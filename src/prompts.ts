@@ -1,5 +1,10 @@
 import Anthropic from "@anthropic-ai/sdk";
 import fs from 'fs';
+import path from "path";
+import { dirname } from 'node:path';
+import { fileURLToPath } from 'node:url';
+    
+const __dirname = dirname(fileURLToPath(import.meta.url));
 
 const MCP_INSTRUCTIONS = 
 `
@@ -146,15 +151,10 @@ This process defines a minimal MCP server, ready to support tools with well-defi
 export function getMCPInstructions({
     mcpServerDescription,
     allFileContents,
-    apiKey
 }: {
     mcpServerDescription: string,
     allFileContents: string,
-    apiKey: string
 }) {
-    const anthropic = new Anthropic({
-        apiKey
-      });
 
   return `
 You are a senior software engineer working on a Model Context Protocol (MCP) server.
@@ -170,11 +170,11 @@ ${MCP_INSTRUCTIONS}
 
 You are working in a starter project that includes the following files:
 \`\`\` src/index.ts
-${fs.readFileSync('sample-mcp-server/src/index.ts', 'utf8')}
+${fs.readFileSync(path.join(__dirname, 'sample-mcp-server', 'src', 'index.ts'), 'utf8')}
 \`\`\`
 
 \`\`\` package.json
-${fs.readFileSync('sample-mcp-server/package.json', 'utf8')}
+${fs.readFileSync(path.join(__dirname, 'sample-mcp-server', 'package.json'), 'utf8')}
 \`\`\`
 
 Output JSON in this format:
