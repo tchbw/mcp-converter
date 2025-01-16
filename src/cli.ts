@@ -68,8 +68,6 @@ program
       ]);
       
       const fileContentString = createFileContentString(answer.files);
-      console.log('Generated file content string:', fileContentString);
-      console.log('MCP Server Description:', answer.mcpDescription);
       // The API key is available in options.anthropicApiKey
 
       const prompt = getMCPInstructions({
