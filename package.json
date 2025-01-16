@@ -1,0 +1,27 @@
+{
+  "name": "mcp-converter",
+  "version": "1.0.0",
+  "description": "A TypeScript package that can be run with npx",
+  "main": "dist/index.js",
+  "bin": {
+    "mcp-converter": "dist/cli.js"
+  },
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "prepublishOnly": "pnpm run build",
+    "start": "tsx dist/cli.js"
+  },
+  "keywords": [],
+  "author": "Your Name",
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^20.0.0",
+    "typescript": "^5.0.0"
+  },
+  "dependencies": {
+    "tsx": "^4.19.2"
+  }
+}
