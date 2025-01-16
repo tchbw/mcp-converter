@@ -10,18 +10,21 @@
     "dist"
   ],
   "scripts": {
-    "build": "tsc",
+    "build": "tsc && pnpm run copy-server",
+    "copy-server": "copyfiles -u 1 \"sample-mcp-server/**/*\" dist",
     "prepublishOnly": "pnpm run build",
-    "start": "tsx dist/cli.js"
+    "start": "node dist/cli.js"
   },
   "keywords": [],
   "author": "Your Name",
   "license": "MIT",
   "devDependencies": {
     "@types/node": "^20.0.0",
+    "copyfiles": "^2.4.1",
     "typescript": "^5.0.0"
   },
   "dependencies": {
+    "commander": "^13.0.0",
     "tsx": "^4.19.2"
   }
 }
